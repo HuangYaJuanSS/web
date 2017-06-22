@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascropt">
+function show() 
+{ 
+out.print("nihao");
+if (window.XMLHttpRequest) 
+{ 
+xmlhttp=new XMLHttpRequest();
+} 
+else 
+{ 
+out.print("nihao");
+xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+out.print("nihao");
+} 
+if(xmlhttp!=null) 
+{ 
+xmlhttp.open("GET","../xml/market_information.xml",false); 
+xmlhttp.send(null); 
+var responsexml=xmlhttp.responseXML; 
+var name=responsexml.getElementsByTagName("name")[0]; 
+out.print("nihao");
+//name.getText()
+}  
+</script>
+
+</head>
+<body onload="show()">
+
+</body>
+</html>
