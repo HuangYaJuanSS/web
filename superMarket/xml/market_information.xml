@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<supermarkets>
+ <supermarket>
+ <name>24h_all day</name>
+  <address>green tree street 110</address>
+  <employee_num>400</employee_num>
+  <telephone>888-888888</telephone>
+ </supermarket>
+</supermarkets>

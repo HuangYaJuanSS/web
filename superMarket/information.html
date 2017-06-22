@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>超市信息-员工管理</title>
+<script type="text/javascript">
+window.onload = function(){ 
+    var xmlhttp; 
+	
+    if (window.XMLHttpRequest) {  
+        var xmlhttp = new XMLHttpRequest();
+    }
+    else {
+       var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }     
+    xmlhttp.open("GET","xml/market_information.xml", false);
+	xmlhttp.setRequestHeader("If-Modified-Since","0");
+    xmlhttp.send();    
+    var xmlDom = xmlhttp.responseXML;    
+	
+    var supermarkets = xmlDom.getElementsByTagName("name");    
+    var nameinf = document.getElementById("nameinf"); 
+    for (var i = 0; i < supermarkets.length; i++) {    
+        if(supermarkets[i].nodeType == 1){
+            var name = supermarkets[i].firstChild.nodeValue;  
+            var font = document.createElement("font");  
+            font.appendChild(document.createTextNode(name));   
+            nameinf.appendChild(font);  
+        }
+		 var address = xmlDom.getElementsByTagName("address");  		
+         var addressinfo=document.getElementById("addressinf");
+		 var add = address[0].firstChild.nodeValue;  
+         var font = document.createElement("font");  
+         font.appendChild(document.createTextNode(add));   
+         addressinfo.appendChild(font);
+		 
+		 var employee_num = xmlDom.getElementsByTagName("employee_num");  		
+         var employee_numinfo=document.getElementById("employee_numinfo");
+		 var num = employee_num[0].firstChild.nodeValue;  
+         var font = document.createElement("font");  
+         font.appendChild(document.createTextNode(num));   
+         employee_numinfo.appendChild(font);
+		 
+		 var telephone = xmlDom.getElementsByTagName("telephone");  		
+         var telephone_numinfo=document.getElementById("telephone_numinfo");
+		 var telephonenum = telephone[0].firstChild.nodeValue;  
+         var font = document.createElement("font");  
+         font.appendChild(document.createTextNode(telephonenum));   
+         telephone_numinfo.appendChild(font);
+    }  
+     
+} 
+
+</script> 
+<link rel="stylesheet" type="text/css" href="css/information.css">
+</head>
+<body>
+<form method="post" name="information" action="updataInfo.jsp">
+</br>
+<div style="height: 50px"><font style="font-size: 25px">&nbsp;&nbsp;&nbsp;&nbsp;超市管理---基本信息</font></div>
+<hr/>
+<div class="daohan" style="float: left;">
+  <ul id="nav">
+    <li><a href="information.html">超市基本信息</a></li>
+    <li><a href="employee_ad.html">员工管理</a></li>
+  </ul>
+</div>
+
+<div style="float:left;width:500px;height:500px;border:1px solid #01060B">
+</br>
+</br>
+<span id="nameinf" name="nameinf" style="margin-top:50px">
+<font class="f1" >超市名字:&nbsp;&nbsp;</font>
+</span>
+</br>
+<span id="addressinf">
+<font class="f1">超市地址:&nbsp;&nbsp;</font>
+</span>
+</br>
+<span id="employee_numinfo">
+<font class="f1">员工人数:&nbsp;&nbsp;</font>
+</span>              
+</br>
+<span id="telephone_numinfo">
+<font class="f1">电话:&nbsp;&nbsp;</font>
+</span>
+</br>
+</br>
+<span>
+选择修改项：<select name="select" size="1">
+             <option selected value="#">--请选择--
+			 <option value="name">超市名字
+             <option value="address">地址
+             <option value="employee_num">员工人数
+			 <option value="telephone">电话
+			 </select>
+</span>
+</br>
+</br>
+</br>
+<span>
+输入修改内容：</br>
+</span>
+<span>
+<input type="text"  name="field1"   style="width:300px;height:150px"/>
+</span>
+</br>
+<span>
+<input name="Submit" type="submit" value="修改" />
+</span>
+</div>
+</body>
+</html>

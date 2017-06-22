@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!ELEMENT supermarket (name,address,employee_num,telephone)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT employee_num (#PCDATA)>
+<!ELEMENT telephone (#PCDATA)>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>库存信息</title>
+<link rel="stylesheet" type="text/css" href="css/information.css">
+<script>
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET","xml/stock.xml",false);
+xmlhttp.setRequestHeader("If-Modified-Since","0");
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML; 
+x=xmlDoc.getElementsByTagName("stock");
+</script>
+</head>
+<body>
+</br>
+<div style="height: 50px"><font style="font-size: 25px">&nbsp;&nbsp;&nbsp;&nbsp;库存信息---库存操作</font></div>
+<hr/>
+<div class="daohan"  border="1" style="float: left;">
+  <ul id="nav">
+    <li><a href="stock.html">库存信息查询</a></li>
+    <li><a href="stockOperator.html">库存操作</a></li>
+  </ul>
+</div>
+<div style="margin-left:200px">
+<script>
+document.write("<table border='1'>");
+document.write("<tr><td>name</td><td>kind</td><td>selling-price</td><td>purchasing-cost</td><td>Inventory</td></tr>");
+for (var i=0;i<x.length;i++)
+  { 
+  document.write("<tr><td>");
+  document.write(x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue);
+  document.write("</td><td>");
+  document.write(x[i].getElementsByTagName("kind")[0].childNodes[0].nodeValue);
+  document.write("</td><td>");
+  document.write(x[i].getElementsByTagName("selling-price")[0].childNodes[0].nodeValue);
+  document.write("</td><td>");
+  document.write(x[i].getElementsByTagName("purchasing-cost")[0].childNodes[0].nodeValue);
+  document.write("</td><td>");
+  document.write(x[i].getElementsByTagName("Inventory")[0].childNodes[0].nodeValue);
+  document.write("</td></tr>");
+  }
+document.write("</table>");
+</script>
+<div>
+</br>
+<div>
+<form action="removeProduction.jsp" name="remove">
+------------删除商品------------------------------</br>
+
+商品名称：<select name="name_re" size="1">
+<option selected value="#">--请选择--
+<script>
+for (var i=0;i<x.length;i++)
+  { 
+  i++;
+  document.write("<option value='"+i+"'>");
+  i--;
+  document.write(x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue);
+  }
+</script>
+ <input style="margin-left:180px" name="Submit3" type="submit" value="删除" />
+</form></br>
+</div>
+
+<div>
+---------添加新的商品-------------------------------</br>
+<form action="addProduction.jsp" name="add">
+名称：<input name="name" style="margin-left:30px"/></br>
+种类：<input name="kind" style="margin-left:30px"/></br>
+售价：<input name="sell" style="margin-left:30px"/></br>
+成本：<input name="cost" style="margin-left:30px"/></br>
+库存：<input name="inventory" style="margin-left:30px"/></br>
+</br>
+<input  style="margin-left:300px" type="submit" name="Submit1" value="添加" />
+</form>
+</div>
+--------出库/进库-----------------------------------------------</br>
+<form action="modifyProduction.jsp" name="op">
+<div>商品名称：
+<select name="name" size="1">
+<option selected value="#">--请选择--
+<script>
+for (var i=0;i<x.length;i++)
+  { 
+  i++;
+  document.write("<option value='"+i+"'>");
+  i--;
+  document.write(x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue);
+  }
+</script>
+</select>&nbsp;&nbsp;&nbsp;
+修改库存：
+<input type="text" name="num"/> 
+<input  style="margin-left:50px" type="submit" name="Submit2" value="修改库存" />
+</div>
+</form>
+</body>
+</html>

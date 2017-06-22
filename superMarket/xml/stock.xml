@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stocks>
+<stock>
+<name>chocolete</name>
+<kind>snacks</kind>
+<selling-price>$10</selling-price>
+<purchasing-cost>$7</purchasing-cost>
+<Inventory>200</Inventory>
+</stock>
+
+
+<stock><name>apple</name><kind>fruit</kind><selling-price>$0.5</selling-price><purchasing-cost>$0.2</purchasing-cost><Inventory>100</Inventory></stock><stock><name>candy</name><kind>food</kind><selling-price>$0.5</selling-price><purchasing-cost>$0.1</purchasing-cost><Inventory>200</Inventory></stock><stock><name>pen</name><kind>tool</kind><selling-price>$5</selling-price><purchasing-cost>$3</purchasing-cost><Inventory>10</Inventory></stock></stocks>

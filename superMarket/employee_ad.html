@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>超市信息-员工管理</title>
+<link rel="stylesheet" type="text/css" href="css/information.css">
+<script>
+if (window.XMLHttpRequest)
+  {
+ var xmlhttp=new XMLHttpRequest();
+  }
+else
+  {
+  var xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET","xml/employee.xml",false);
+//xmlhttp.setRequestHeader("If-Modified-Since","0");
+xmlhttp.send();
+var xmlDoc=xmlhttp.responseXML; 
+var x=xmlDoc.getElementsByTagName("employee");
+
+function displayInfo(i)
+{
+x=xmlDoc.getElementsByTagName("employee");
+name=(x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue);
+sex=(x[i].getElementsByTagName("sex")[0].childNodes[0].nodeValue);
+nation=(x[i].getElementsByTagName("nation")[0].childNodes[0].nodeValue);
+age=(x[i].getElementsByTagName("age")[0].childNodes[0].nodeValue);
+job=(x[i].getElementsByTagName("job")[0].childNodes[0].nodeValue);
+salary=(x[i].getElementsByTagName("salary")[0].childNodes[0].nodeValue);
+txt="<div style='margin-top:-200px;height:200px;width:100px;background-color:#FFFFFF'>具体信息：</br>name: "+name+"<br>sex: "+sex+"<br>nation: "+nation+"<br>age: "+age+"<br>job: "+job+"<br>salary: "+salary +"</div>" ;
+document.getElementById("showInfo").innerHTML=txt;
+}
+</script>
+</head>
+
+
+<body>
+</br>
+<div style="height: 50px"><font style="font-size: 25px">&nbsp;&nbsp;&nbsp;&nbsp;超市信息---员工管理</font></div>
+<hr/>
+<div class="daohan"  border="1" style="float: left;">
+  <ul id="nav">
+    <li><a href="information.html">超市基本信息</a></li>
+    <li><a href="employee_ad.html">员工管理</a></li>
+  </ul>
+</div>
+<div class="divcss" style="float:left;border:1px solid #01060B">
+&nbsp;<font style="font-size:13px">点击表格的名字可以在右边展开具体信息</font></br>
+<table style='width:400px;height:475px'><tr>
+<td><div><script>
+document.write("<table border='1' style='width:150px;height:50px;margin-top:-200px;margin-left:50px'>");
+for (var i=0;i<x.length;i++)
+  { 
+  document.write("<tr onclick='displayInfo(" + i + ")'>");
+  document.write("<td>&nbsp;&nbsp;&nbsp;");
+  document.write(x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue);
+  document.write("</td><td>&nbsp;&nbsp;&nbsp;");
+  document.write(x[i].getElementsByTagName("job")[0].childNodes[0].nodeValue);
+  document.write("</td></tr>");
+  }
+document.write("</table>");
+</script></div></td>
+<td style="width:30px"></td>
+<td><div id='showInfo' style="width:100px">&nbsp;</div></td>
+</tr></table>
+</div>
+<div style="float:left;margin-left:20px;">
+<table>
+<tr style="height:150px">
+<td><div>
+<form action="addEmployee.jsp" name="add">
+----------------------添加-------------</br>
+姓名：<input name="Name" style="margin-left:30px"/></br>
+性别：<input name="Sex" style="margin-left:30px"/></br>
+国籍：<input name="Nation" style="margin-left:30px"/></br>
+年龄：<input name="Age" style="margin-left:30px"/></br>
+职位：<input name="Job" style="margin-left:30px"/></br>
+月薪：<input name="Salary" style="margin-left:30px"/></br>
+</br>
+<input  style="margin-left:180px" type="submit" name="Submit1" value="添加" />
+</form>
+</div></td>
+</tr>
+<tr style="height:150px">
+<td><div style="margin-top:-10px">
+<form action="modifyEmployee.jsp" name="modify">
+-----------------------修改-------------</br>
+输入修改人员名字：<input type="text" name="InfoUpdateName"/> </br></br>
+选择修改的项目：
+<select name="select" size="1">
+             <option selected value="#">--请选择--
+			 <option value="name">姓名
+             <option value="sex">性别
+             <option value="nation">国籍
+			 <option value="age">年龄
+             <option value="job">职位
+             <option value="salary">月薪
+			 </select>
+			 </br></br>
+输入修改内容：<input type="text" name="InfoUpdate"/> 
+<input name="Submit2" type="submit" value="修改" /></br>
+</form>
+</div></td>
+</tr>
+<tr style="height:125px">
+<td><div style="margin-top:-30px">
+<form action="removeEmployee.jsp" name="remove">
+-----------------------删除-----------</br></br>
+删除人员名字:<input type="text" name="remove_name"/>
+ <input name="Submit3" type="submit" value="删除" />
+ </form></br>
+</div></td>
+</tr>
+</tr>
+</table>
+</div>
+
+</body>
+</html></html>
